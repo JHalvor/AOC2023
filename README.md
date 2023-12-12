@@ -8,4 +8,4 @@ Each day-folder will contain the solution (dayx.py), a input data file (input.tx
 - [x] Day 1 - [lang: Python]
 - [x] Day 2 - [lang: Python]
 - [x] Day 3 - [lang: Python]
-- [ ] Day 4 - [lang: Kotlin]
+- [x] Day 4 - [lang: Kotlin]
