@@ -1,21 +1,25 @@
 import java.io.File
 
 fun main(args: Array<String>) {
-    val res = partOne("src/main/resources/input.txt")
+    val data = getData("src/main/resources/input.txt")
+    var partOneSeeds = data.first
+    val partTwoSeeds = data.first.map { it }.toMutableList()
+    val categories = data.second
 
-    print("Part One: - The lowest location number is $res")
+    partOneSeeds = convertSeedsPartOne(partOneSeeds, categories)
+    val partTwoResult = findSmallesNumber(partTwoSeeds, categories)
+
+    val partOneResult = partOneSeeds.min()
+
+    println("Part One: - The lowest location number is $partOneResult")
+    println("Part Two: - The lowest location number is $partTwoResult")
 }
 
 
-fun partOne(fileName: String): Long {
-    val data = getData(fileName)
-    val seeds = data.first
-    val categories = data.second
-
+fun convertSeedsPartOne(seeds: MutableList<Long>, categories: MutableMap<String, MutableList<Triple<Long, Long, Long>>>): MutableList<Long> {
     var changed = false
     for (i in 0 until seeds.size) {
         for (key in categories.keys) {
-            //print("- $key ${seeds[i]}, ")
             for (triple in categories[key]!!) {
                 if (seeds[i] >= triple.second &&
                     seeds[i] < (triple.second + triple.third) &&
@@ -27,7 +31,37 @@ fun partOne(fileName: String): Long {
             changed = false
         }
     }
-    return seeds.min()
+    return seeds
+}
+
+fun findSmallesNumber(seeds: MutableList<Long>, categories: MutableMap<String, MutableList<Triple<Long, Long, Long>>>): Long {
+    //println(seeds)
+    var changed = false
+    var smallesNumber: Long = 99999999
+    println("Program will count ${seeds.size/2} for loops in varying sizes\nThis will take a while...")
+    for (j in 0 until seeds.size step 2) {
+        println("Counting to: ${((seeds[j] + seeds[j + 1]) - seeds[j])} in the for loop...")
+        for (i in seeds[j] until (seeds[j] + seeds[j + 1])) {
+            var seed = i
+            for (key in categories.keys) {
+                for (triple in categories[key]!!) {
+                    if (seed >= triple.second &&
+                        seed < (triple.second + triple.third) &&
+                        !changed) {
+                        seed = ((seed - triple.second) + triple.first)
+                        changed = true
+                    }
+                }
+                changed = false
+            }
+
+            0
+            if (seed < smallesNumber) {
+                smallesNumber = seed
+            }
+        }
+    }
+    return smallesNumber
 }
 
 fun getData(fileName: String): Pair<MutableList<Long>, MutableMap<String, MutableList<Triple<Long, Long, Long>>>> {
