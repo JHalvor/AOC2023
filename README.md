@@ -1,8 +1,8 @@
 # Advent Of Code - 2023
 ## Summary
 My humble attempt at solving the [Advent of Code](https://adventofcode.com/) challenges 2023.
-The challenges are solved using Python in VSCode and Kotlin in IntelliJ and marked accordingly.
-For solutions solved with python, the folder will contain the solution (dayx.py), a input data file (input.txt), and the example input test data file (inputtest.txt).
+The challenges are solved using Python in VSCode and Kotlin in IntelliJ and marked accordingly.\n
+For solutions solved with python, the folder will contain the solution (dayx.py), a input data file (input.txt), and the example input test data file (inputtest.txt).\n
 For solutions solved with Kotlin, the folder will a build gradle project application, with the solution (src/main/kotlin/Main.kt), a input data file (src/main/resources/input.txt), and the example input test data file (src/main/resources/inputtest.txt).
 
 ## Tasks not completed
